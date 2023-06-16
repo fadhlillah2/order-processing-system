@@ -1,4 +1,4 @@
-# MyMiniProjectRestAPI
+# Mini Project Rest Api
 
 This is a Spring Boot REST API application for managing orders, products and customers.
 
@@ -25,13 +25,13 @@ These instructions will get you a copy of the project up and running on your loc
 1. Clone the project to your local machine.
 
 ```bash
-git clone https://github.com/yourusername/MyMiniProjectRestAPI.git
+git clone https://github.com/fadhlillah2/MyMiniProjectRestAPI.git
 ```
 
 2. Navigate into the project directory.
 
 ```bash
-cd MyMiniProjectRestAPI
+cd mini-project-rest-api
 ```
 
 3. Build the project.
