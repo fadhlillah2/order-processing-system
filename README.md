@@ -54,8 +54,13 @@ Now, your service should be up and running at `http://localhost:8080`.
 Here are some of the API endpoints that are available:
 
 - `POST /api/v1/customers`: Creates a new customer
-- `GET /api/customers/{customerId}`: Retrieves a specific customer
-- `PUT /api/customers/{customerId}`: Updates a specific customer
+- `GET /api/v1/customers/{customerId}`: Retrieves a specific customer
+- `PUT /api/v1/customers/{customerId}`: Updates a specific customer
+- `POST /api/v1/products`: Creates a new product
+- `GET /api/v1/products/{productId}`: Retrieves a specific product
+- `PUT /api/v1/products/{productId}`: Updates a specific product
+- `POST /api/v1/orders`: Creates a new order
+- `GET /api/v1/orders/{orderId}`: Retrieves a specific order
 
 This pattern is followed for the `products` and `orders` endpoints as well.
 
