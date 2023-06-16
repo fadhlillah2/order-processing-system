@@ -62,7 +62,6 @@ Here are some of the API endpoints that are available:
 - `POST /api/v1/orders`: Creates a new order
 - `GET /api/v1/orders/{orderId}`: Retrieves a specific order
 
-This pattern is followed for the `products` and `orders` endpoints as well.
 
 ## Built With
 
