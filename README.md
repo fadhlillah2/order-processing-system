@@ -25,7 +25,7 @@ These instructions will get you a copy of the project up and running on your loc
 1. Clone the project to your local machine.
 
 ```bash
-git clone https://github.com/fadhlillah2/MyMiniProjectRestAPI.git
+git clone https://github.com/fadhlillah2/order-processing-system.git
 ```
 
 2. Navigate into the project directory.
@@ -53,11 +53,9 @@ Now, your service should be up and running at `http://localhost:8080`.
 
 Here are some of the API endpoints that are available:
 
-- `GET /api/customers`: Retrieves all customers
-- `POST /api/customers`: Creates a new customer
+- `POST /api/v1/customers`: Creates a new customer
 - `GET /api/customers/{customerId}`: Retrieves a specific customer
 - `PUT /api/customers/{customerId}`: Updates a specific customer
-- `DELETE /api/customers/{customerId}`: Deletes a specific customer
 
 This pattern is followed for the `products` and `orders` endpoints as well.
 
