@@ -25,7 +25,7 @@ This application uses a layered architecture pattern, consisting of:
 - Service Layer: Contains business logic and calls methods from the repository layer.
 - Repository Layer: Responsible for data access logic, communicates directly with the database.
 - Model (Entity) Layer: Maps directly to the database tables, includes relationships between tables.
-# The application uses Spring Data JPA for the Repository layer which provides a way to reduce boilerplate code to implement data access layers for various persistence stores.
+- The application uses Spring Data JPA for the Repository layer which provides a way to reduce boilerplate code to implement data access layers for various persistence stores.
 
 ## Getting Started
 
