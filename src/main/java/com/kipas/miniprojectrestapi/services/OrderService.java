@@ -9,6 +9,8 @@ import com.kipas.miniprojectrestapi.exceptions.ResourceNotFoundException;
 import com.kipas.miniprojectrestapi.repositories.CustomerRepository;
 import com.kipas.miniprojectrestapi.repositories.OrderRepository;
 import com.kipas.miniprojectrestapi.repositories.ProductRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,6 +28,8 @@ public class OrderService {
     private CustomerRepository customerRepository;
     @Autowired
     private ProductRepository productRepository;
+
+    private static final Logger log = LoggerFactory.getLogger(OrderService.class);
 
     @Transactional
     public Order saveOrder_old(Order order) {
@@ -47,46 +51,56 @@ public class OrderService {
     }
     @Transactional
     public Order saveOrder(OrderRequest orderRequest) {
-        // Get customer from db
-        Customer customer = customerRepository.findById(orderRequest.getCustomerId())
-                .orElseThrow(() -> new EntityNotFoundException("Customer with id " + orderRequest.getCustomerId() + " not found"));
+        try {
+            // Get customer from db
+            Customer customer = customerRepository.findById(orderRequest.getCustomerId())
+                    .orElseThrow(() -> new EntityNotFoundException("Customer with id " + orderRequest.getCustomerId() + " not found"));
 
-        // Validate products and calculate total amount
-        List<Product> products = new ArrayList<>();
-        BigDecimal totalAmount = BigDecimal.ZERO;
-        Integer qty = 0;
-        for (UUID productId : orderRequest.getProductIds()) {
-            Product product = productRepository.findById(productId)
-                    .orElseThrow(() -> new EntityNotFoundException("Product with id " + productId + " not found"));
+            // Validate products and calculate total amount
+            List<Product> products = new ArrayList<>();
+            BigDecimal totalAmount = BigDecimal.ZERO;
+            Integer qty = 0;
+            for (UUID productId : orderRequest.getProductIds()) {
+                Product product = productRepository.findById(productId)
+                        .orElseThrow(() -> new EntityNotFoundException("Product with id " + productId + " not found"));
 
-            // Check product stock
-            if (product.getStock() < 1) {
-                throw new OutOfStockException("Product with id " + productId + " is out of stock");
+                // Check product stock
+                if (product.getStock() < 1) {
+                    throw new OutOfStockException("Product with id " + productId + " is out of stock");
+                }
+
+                // Decreasing stock after ordered
+                product.setStock(product.getStock() - 1);
+                productRepository.save(product);
+
+                // Assume that product has a 'stock' field
+                qty += product.getStock();
+
+                products.add(product);
+
+                // Assume that product has a 'price' field
+                totalAmount = totalAmount.add(product.getPrice());
+
             }
 
-            // Decreasing stock after ordered
-            product.setStock(product.getStock() - 1);
-            productRepository.save(product);
+            // Create order
+            Order order = new Order();
+            order.setCustomer(customer);
+            order.setProducts(products);
+            order.setAmount(totalAmount);
+            order.setQty(qty);
+            order.setStatus(Order.OrderStatus.CREATED);
 
-            // Assume that product has a 'stock' field
-            qty += product.getStock();
+            log.info("Order successfully processed: {}", order);
+            return orderRepository.save(order);
 
-            products.add(product);
-
-            // Assume that product has a 'price' field
-            totalAmount = totalAmount.add(product.getPrice());
-
+        } catch (ResourceNotFoundException e) {
+            log.error("Error processing order", e);
+            throw e;
+        } catch (Exception e) {
+            log.error("Unexpected error processing order", e);
+            throw new RuntimeException("Unexpected error processing order", e);
         }
-
-        // Create order
-        Order order = new Order();
-        order.setCustomer(customer);
-        order.setProducts(products);
-        order.setAmount(totalAmount);
-        order.setQty(qty);
-        order.setStatus(Order.OrderStatus.CREATED);
-
-        return orderRepository.save(order);
     }
     public Order getOrder(UUID id) {
         return orderRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Order", "id", id));
