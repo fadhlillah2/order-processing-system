@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -29,7 +30,7 @@ public class Product {
     private String name;
 
     @Column(name = "productPrice")
-    private Double price;
+    private BigDecimal price;
 
     @Column(name = "stock")
     private Integer stock;

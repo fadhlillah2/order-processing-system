@@ -1,5 +1,6 @@
 package com.kipas.miniprojectrestapi.controllers;
 
+import com.kipas.miniprojectrestapi.dtos.request.OrderRequest;
 import com.kipas.miniprojectrestapi.entities.Order;
 import com.kipas.miniprojectrestapi.exceptions.ResourceNotFoundException;
 import com.kipas.miniprojectrestapi.services.OrderService;
@@ -19,9 +20,9 @@ public class OrderController {
     private OrderService orderService;
 
     @PostMapping
-    public ResponseEntity<Order> createOrder(@RequestBody Order order) {
+    public ResponseEntity<Order> createOrder(@RequestBody OrderRequest orderRequest) {
         try {
-            return new ResponseEntity<>(orderService.saveOrder(order), HttpStatus.CREATED);
+            return new ResponseEntity<>(orderService.saveOrder(orderRequest), HttpStatus.CREATED);
         } catch (ResourceNotFoundException e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage(), e);
         }

@@ -11,9 +11,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 
 @Entity
 @Table(name = "orders")
@@ -37,7 +35,7 @@ public class Order {
             name = "order_product",
             joinColumns = @JoinColumn(name = "order_id"),
             inverseJoinColumns = @JoinColumn(name = "product_id"))
-    private Set<Product> products = new HashSet<>();
+    private List<Product> products = new ArrayList<>();
 
     private BigDecimal amount; // Jumlah total order≥
 
