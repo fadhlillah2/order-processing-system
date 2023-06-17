@@ -76,7 +76,7 @@ Here are some of the API endpoints that are available:
 - `POST /api/v1/orders`: Creates a new order
 - `GET /api/v1/orders/{orderId}`: Retrieves a specific order
 
-for further info you can check documentation: https://documenter.getpostman.com/view/13737145/2s93si1VE8
+For further information, you can check the API documentation: https://documenter.getpostman.com/view/13737145/2s93si1VE8
 
 
 ## Built With
