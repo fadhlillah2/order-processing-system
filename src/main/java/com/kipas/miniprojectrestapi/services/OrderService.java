@@ -3,6 +3,7 @@ package com.kipas.miniprojectrestapi.services;
 import com.kipas.miniprojectrestapi.entities.Customer;
 import com.kipas.miniprojectrestapi.entities.Order;
 import com.kipas.miniprojectrestapi.entities.Product;
+import com.kipas.miniprojectrestapi.exceptions.OutOfStockException;
 import com.kipas.miniprojectrestapi.exceptions.ResourceNotFoundException;
 import com.kipas.miniprojectrestapi.repositories.CustomerRepository;
 import com.kipas.miniprojectrestapi.repositories.OrderRepository;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
+import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;

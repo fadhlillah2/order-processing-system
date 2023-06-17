@@ -6,8 +6,10 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
@@ -37,8 +39,20 @@ public class Order {
             inverseJoinColumns = @JoinColumn(name = "product_id"))
     private Set<Product> products = new HashSet<>();
 
-    @Column(name = "order_date")
+    private BigDecimal amount; // Jumlah total order≥
+
+    private Integer qty;
+
+    @CreationTimestamp
+    @Column(name = "orderDate")
     private LocalDateTime orderDate;
+
+    @Enumerated(EnumType.STRING)
+    private OrderStatus status; // Status order
+
+    public enum OrderStatus {
+        CREATED, CONFIRMED, PAID, SHIPPED, DELIVERED, CANCELED
+    }
 
     // getters and setters...
 }
