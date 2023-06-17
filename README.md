@@ -8,7 +8,7 @@ To run this project, you need the following tools:
 
 - Java Development Kit (JDK) 8 or later
 - Maven 3.6 or later
-- A SQL Database (e.g., MySQL, PostgreSQL)
+- A SQL Database (e.g., MySQL, PostgreSQL) (recommended using Docker)
 
 ## Features
 
@@ -50,13 +50,19 @@ git clone https://github.com/fadhlillah2/order-processing-system.git
 cd mini-project-rest-api
 ```
 
-3. Build the project.
+3. Running the database (if using docker)
+
+```bash
+docker compose up
+```
+
+4. Build the project.
 
 ```bash
 mvn clean install
 ```
 
-4. Run the project.
+5. Run the project.
 
 ```bash
 
