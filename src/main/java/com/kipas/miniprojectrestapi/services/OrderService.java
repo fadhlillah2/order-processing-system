@@ -64,16 +64,18 @@ public class OrderService {
                 throw new OutOfStockException("Product with id " + productId + " is out of stock");
             }
 
+            // Decreasing stock after ordered
             product.setStock(product.getStock() - 1);
             productRepository.save(product);
+
+            // Assume that product has a 'stock' field
+            qty += product.getStock();
 
             products.add(product);
 
             // Assume that product has a 'price' field
             totalAmount = totalAmount.add(product.getPrice());
 
-            // Assume that product has a 'stock' field
-            qty += product.getStock();
         }
 
         // Create order
