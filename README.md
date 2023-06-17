@@ -27,8 +27,8 @@ This application uses a layered architecture pattern, consisting of:
 - Service Layer: Contains business logic and calls methods from the repository layer.
 - Repository Layer: Responsible for data access logic, communicates directly with the database.
 - Model (Entity) Layer: Maps directly to the database tables, includes relationships between tables.
-- DTO (Data Transfer Object): This is a simple object that carries data between processes. It's like a carrier pigeon—it doesn't do much processing itself, but it helps move data from one place to another, often from the server to the client.
-- Exception: This is your application's way of saying "something went wrong" and providing information about the problem. This could be anything from a database connection failing to a user entering invalid data
+- DTO (Data Transfer Object): A simple object that carries data between processes. It's like a carrier pigeon—it doesn't do much processing itself, but it helps move data from one place to another, often from the server to the client.
+- Exception: Your application's way of saying "something went wrong" and providing information about the problem. This could be anything from a database connection failing to a user entering invalid data
 
 The application uses Spring Data JPA for the Repository layer which provides a way to reduce boilerplate code to implement data access layers for various persistence stores.
 
