@@ -27,7 +27,7 @@ This application uses a layered architecture pattern, consisting of:
 - Service Layer: Contains business logic and calls methods from the repository layer.
 - Repository Layer: Responsible for data access logic, communicates directly with the database.
 - Model (Entity) Layer: Maps directly to the database tables, includes relationships between tables.
-<img width="468" alt="image" src="https://github.com/fadhlillah2/order-processing-system/assets/73236007/d2b099b3-5c11-40e8-b456-e1d2e2ae85bb">
+    <img width="468" alt="image" src="https://github.com/fadhlillah2/order-processing-system/assets/73236007/d2b099b3-5c11-40e8-b456-e1d2e2ae85bb">
 
 - DTO (Data Transfer Object): A simple object that carries data between processes. It's like a carrier pigeon—it doesn't do much processing itself, but it helps move data from one place to another, often from the server to the client.
 - Exception: Your application's way of saying "something went wrong" and providing information about the problem. This could be anything from a database connection failing to a user entering invalid data
