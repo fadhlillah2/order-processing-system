@@ -51,7 +51,7 @@ git clone https://github.com/fadhlillah2/order-processing-system.git
 cd mini-project-rest-api
 ```
 
-3. Build and Run your services with Docker (Skip this, if want to running at your local)
+3. Build and Run your services with Docker (Skip this, if want to running at your localhost)
 
 ```bash
 docker compose up --build
