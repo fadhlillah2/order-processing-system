@@ -16,6 +16,11 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
+    @GetMapping
+    public String hello(){
+        return "hello world product controller";
+    }
+
     @PostMapping
     public ResponseEntity<Product> createProduct(@RequestBody Product product) {
         return new ResponseEntity<>(productService.saveProduct(product), HttpStatus.CREATED);
