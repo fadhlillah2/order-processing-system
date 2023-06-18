@@ -51,15 +51,12 @@ git clone https://github.com/fadhlillah2/order-processing-system.git
 cd mini-project-rest-api
 ```
 
-3. Build and Run your services
+3. Build and Run your services with Docker (Skip this if running at your local)
 
 ```bash
-docker-compose build
+docker compose up --build
 ```
-
-```bash
-docker compose up
-```
+Your service should be up and the running at `http://localhost:8080`
 
 4. Build the project.
 
