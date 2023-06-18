@@ -56,7 +56,7 @@ cd mini-project-rest-api
 ```bash
 docker compose up --build
 ```
-Your service should be up and the running at `http://localhost:8080`
+Your service should be up and the running at Docker 
 
 4. Build the project.
 
