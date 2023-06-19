@@ -1,5 +1,6 @@
 package com.kipas.miniprojectrestapi.exceptions;
 
+import com.kipas.miniprojectrestapi.dtos.response.ResponseDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -12,8 +13,13 @@ import javax.persistence.EntityNotFoundException;
 public class GlobalExceptionHandler {
 
     @ExceptionHandler({ EntityNotFoundException.class, OutOfStockException.class })
-    public ResponseEntity<String> handleNotFoundException(RuntimeException ex) {
-        return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
+    public ResponseEntity<ResponseDTO<Object>> handleNotFoundException(RuntimeException ex) {
+        return new ResponseEntity<>(
+                ResponseDTO.builder()
+                        .httpStatus(HttpStatus.BAD_REQUEST)
+                        .message("Bad Request")
+                        .data(ex.getMessage())
+                        .build(), HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler({ Exception.class })

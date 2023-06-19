@@ -51,7 +51,7 @@ public class OrderService {
     }
     @Transactional
     public Order saveOrder(OrderRequest orderRequest) {
-        try {
+//        try {
             // Get customer from db
             Customer customer = customerRepository.findById(orderRequest.getCustomerId())
                     .orElseThrow(() -> new EntityNotFoundException("Customer with id " + orderRequest.getCustomerId() + " not found"));
@@ -94,13 +94,14 @@ public class OrderService {
             log.info("Order successfully processed: {}", order);
             return orderRepository.save(order);
 
-        } catch (ResourceNotFoundException e) {
-            log.error("Error processing order", e);
-            throw e;
-        } catch (Exception e) {
-            log.error("Unexpected error processing order", e);
-            throw new RuntimeException("Unexpected error processing order", e);
-        }
+//        }
+//        catch (ResourceNotFoundException e) {
+//            log.error("Error processing order", e);
+//            throw e;
+//        } catch (Exception e) {
+//            log.error("Unexpected error processing order", e);
+//            throw new RuntimeException("Unexpected error processing order", e);
+//        }
     }
     public Order getOrder(UUID id) {
         return orderRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Order", "id", id));
