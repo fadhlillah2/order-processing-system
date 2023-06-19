@@ -6,7 +6,7 @@ This is a Spring Boot REST API application for managing orders, products and cus
 
 To run this project, you need the following tools:
 
-- Java Development Kit (JDK) 8 or later
+- Java Development Kit (JDK) 8 
 - Maven 3.6 or later
 - A SQL Database (e.g., MySQL, PostgreSQL) 
 - Docker (recommended)
